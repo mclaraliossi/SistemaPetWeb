@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIstargem de Cliente</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Listagem de clientes</h1>
+    <h3><a th:href="@{/clientes/criar}">Criar novo cliente</a></h3>
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Endereço</th>
+                <th>CPF</th>
+                <th colspan="2">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.nomeCliente}"></td>
+                <td th:text="${cliente.emailCliente}"></td>
+                <td th:text="${cliente.telefoneCliente}"></td>
+                <td th:text="${cliente.enderecoCliente}"></td>
+                <td th:text="${cliente.cpfCliente}"></td>
+                <td>
+                    <a th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}">Editar</a>
+                    <a th:href="@{/cliente/excluir/{id}(id=${cliente.idCliente})}">Editar</a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>
