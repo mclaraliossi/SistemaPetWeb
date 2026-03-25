@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1 class="textPrincipal">Cadastro de Animais</h1>
+    <form th:action="@{/animais/salvar}" method="post" th:object="${animal}">
+
+        <h2 class="tituloForm">Formulário de Animal</h2>
+
+        <input type="hidden" th:field="*{idAnimal}">
+
+        <label for="nomeAnimal">Nome:</label>
+        <input type="text" id="nomeAnimal" th:field="*{nomeAnimal}"><br><br>
+
+        <label for="racaAnimal">Raça:</label>
+        <input type="text" id="racaAnimal" th:field="*{racaAnimal}"><br><br>
+
+        <label for="porteAnimal">Porte:</label>
+        <input type="text" id="porteAnimal" th:field="*{porteAnimal}"><br><br>
+
+        <label for="pesoAnimal">Peso:</label>
+        <input type="text" id="pesoAnimal" th:field="*{pesoAnimal}"><br><br>
+
+        <button type="submit">Salvar</button>
+
+    </form>
+    <br><br>
+
+    <button><a href="/petweb">Voltar</a></button>
+</body>
+</html>

@@ -24,4 +24,13 @@ public class ClienteService {
     public List<Cliente> findAll(){
         return clienteRepository.findAll();
     }
+    // Método para excluir um cliente por ID
+    public void deleteById(Integer id) {
+        clienteRepository.deleteById(id);
+    }
+
+    // Método para encontrar um cliente por ID
+    public Cliente findById(Integer id) {
+        return clienteRepository.findById(id).orElse(null);
+    }
 }

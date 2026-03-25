@@ -30,7 +30,7 @@ public class Cliente {
     private String emailCliente;
 
     @Column(nullable = false, length = 15)
-    private String telefonecliente;
+    private String telefoneCliente;
 
     @Column(nullable = false, length = 50)
     private String enderecoCliente;

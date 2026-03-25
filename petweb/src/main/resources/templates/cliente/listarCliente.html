@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIstargem de Cliente</title>
+    <title>Listagem de Cliente</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1 style="text-align: center;">Listagem de clientes</h1>
+    <h1 class="textPrincipal">Listagem de clientes</h1>
     <h3><a th:href="@{/clientes/criar}">Criar novo cliente</a></h3>
     <table border="1" align="center">
         <thead>
@@ -27,13 +28,17 @@
                 <td th:text="${cliente.enderecoCliente}"></td>
                 <td th:text="${cliente.cpfCliente}"></td>
                 <td>
-                    <a th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}">Editar</a>
-                    <a th:href="@{/cliente/excluir/{id}(id=${cliente.idCliente})}">Editar</a>
+                    <a th:href="@{/clientes/editar/{id}(id=${cliente.idCliente})}">Editar</a>
+                    <a th:href="@{/clientes/excluir/{id}(id=${cliente.idCliente})}">Excluir</a>
                 </td>
+
 
             </tr>
         </tbody>
+
     </table>
+    <button><a href="/petweb">Voltar</a></button>
+
     
 </body>
 </html>

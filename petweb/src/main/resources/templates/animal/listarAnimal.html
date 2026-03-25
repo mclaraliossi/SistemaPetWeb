@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Animais</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <h1 class="textPrincipal">Listagem de animais</h1>
+    <h3><a th:href="@{/animais/criar}">Criar novo animal</a></h3>
+    <table border="1" align="center">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Raça</th>
+                <th>Porte</th>
+                <th>Peso</th>
+                <th colspan="2">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="animal : ${animais}">
+                <td th:text="${animal.nomeAnimal}"></td>
+                <td th:text="${animal.racaAnimal}"></td>
+                <td th:text="${animal.porteAnimal}"></td>
+                <td th:text="${animal.pesoAnimal}"></td>
+                <td>
+                    <a th:href="@{/animais/editar/{id}(id=${animal.idAnimal})}">Editar</a>
+                    <a th:href="@{/animais/excluir/{id}(id=${animal.idAnimal})}">Excluir</a>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+    <button><a href="/petweb">Voltar</a></button>
+</body>
+</html>

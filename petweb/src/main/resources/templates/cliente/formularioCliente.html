@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Clientes</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1 style="text-align: center;">Cadastro de Clientes</h1>
-    <form th:action="@{/cliente/salvar}" method="post" th:object="${cliente}">
+    <h1 class="textPrincipal">Cadastro de Clientes</h1>
+    <form th:action="@{/clientes/salvar}" method="post" th:object="${cliente}">
 
+        <h2 class="tituloForm">Formulário de Cliente</h2>
         <input type="hidden" th:field="*{idCliente}">
 
         <label for="nomeCliente">Nome:</label>
@@ -20,15 +22,18 @@
         <label for="telefoneCliente">Telefone:</label>
         <input type="text" id="telefoneCliente" th:field="*{telefoneCliente}"><br><br>
 
-        <label for="enderecoCliente">Nome:</label>
+        <label for="enderecoCliente">Endereço:</label>
         <input type="text" id="enderecoCliente" th:field="*{enderecoCliente}"><br><br>
 
-        <label for="cpfCliente">Nome:</label>
+        <label for="cpfCliente">Cpf:</label>
         <input type="text" id="cpfCliente" th:field="*{cpfCliente}"><br><br>
 
         <button type="submit">Salvar</button>
 
     </form>
+    <br><br>
+
+    <button><a href="/petweb">Voltar</a></button>
     
 </body>
 </html>
