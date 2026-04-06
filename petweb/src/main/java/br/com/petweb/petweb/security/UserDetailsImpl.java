@@ -1,4 +1,4 @@
-package br.com.petweb.security;
+package br.com.petweb.petweb.security;
 
 import java.util.Collection;
 import java.util.List;
