@@ -26,8 +26,8 @@ public class UsuarioController {
 
     @GetMapping("/criar")
     public String criarForm(Model model){
-        model.addAttribute("usuario", new Usuario());
-        return "/usuario/formularioUsuario";
+        model.addAttribute("usuarios", new Usuario());
+        return "/usuario/usuarioFormulario";
     }
 
 
