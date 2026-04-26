@@ -7,36 +7,37 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
-      <h1 style="text-align: center;">Cadastro de Usuários</h1>
-      <form th:action="@{/usuarios/salvar}" method="post" th:object="${usuarios}">
+<body id="bodyFormUser">
+      <h1 class="textPrincipal">Cadastro de Usuários</h1>
+      <form class="formLogin" th:action="@{/usuarios/salvar}" method="post" th:object="${usuarios}">
           <input type="hidden" th:field="*{idUsuario}">
   
-          <label for="nomeUsuario">Nome</label>
-          <input type="text" th:field="*{nomeUsuario}">
+          <label class="labelLogin" for="nomeUsuario">Nome</label>
+          <input class="inputLogin" type="text" th:field="*{nomeUsuario}">
           <br />
   
-          <label for="emailUsuario">Email</label>
-          <input type="text" th:field="*{emailUsuario}">
+          <label class="labelLogin" for="emailUsuario">Email</label>
+          <input class="inputLogin" type="text" th:field="*{emailUsuario}">
           <br />
   
-          <label for="cpfUsuario">Cpf</label>
-          <input type="text" th:field="*{cpfUsuario}">
+          <label class="labelLogin" for="cpfUsuario">Cpf</label>
+          <input class="inputLogin" type="text" th:field="*{cpfUsuario}">
           <br />
   
-          <label for="telefoneUsuario">Telefone</label>
-          <input type="text" th:field="*{telefoneUsuario}">
+          <label class="labelLogin" for="telefoneUsuario">Telefone</label>
+          <input class="inputLogin" type="text" th:field="*{telefoneUsuario}">
           <br />
   
-          <label for="loginUsuario">Login</label>
-          <input type="text" th:field="*{loginUsuario}">
+          <label class="labelLogin" for="loginUsuario">Login</label>
+          <input class="inputLogin" type="text" th:field="*{loginUsuario}">
           <br />
   
-          <label for="senhaUsuario">Senha</label>
-          <input type="password" th:field="*{senhaUsuario}">
+          <label class="labelLogin" for="senhaUsuario">Senha</label>
+          <input class="inputLogin" type="password" th:field="*{senhaUsuario}">
           <br />
   
-          <input type="submit" value="salvar">
+          <input class="btnSalvar"  type="submit" value="salvar">
       </form>
+      <button class="btnVoltar" ><a class="linkVoltar" href="/petweb">Voltar</a></button>
 </body>
 </html>

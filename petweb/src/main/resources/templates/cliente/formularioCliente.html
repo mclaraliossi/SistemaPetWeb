@@ -7,34 +7,34 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body class="bodyFormCad">
     <h1 class="textPrincipal">Cadastro de Clientes</h1>
-    <form th:action="@{/clientes/salvar}" method="post" th:object="${cliente}">
+    <form class="formCad" th:action="@{/clientes/salvar}" method="post" th:object="${cliente}">
 
         <h2 class="tituloForm">Formulário de Cliente</h2>
-        <input type="hidden" th:field="*{idCliente}">
+        <input class="inputCad" type="hidden" th:field="*{idCliente}">
 
-        <label for="nomeCliente">Nome:</label>
-        <input type="text" id="nomeCliente" th:field="*{nomeCliente}"><br><br>
+        <label class="labelCad" for="nomeCliente">Nome:</label>
+        <input class="inputCad" type="text" id="nomeCliente" th:field="*{nomeCliente}"><br><br>
 
-        <label for="emailCliente">Email:</label>
-        <input type="email" id="emailCliente" th:field="*{emailCliente}"><br><br>
+        <label class="labelCad" for="emailCliente">Email:</label>
+        <input class="inputCad" type="email" id="emailCliente" th:field="*{emailCliente}"><br><br>
 
-        <label for="telefoneCliente">Telefone:</label>
-        <input type="text" id="telefoneCliente" th:field="*{telefoneCliente}"><br><br>
+        <label class="labelCad" for="telefoneCliente">Telefone:</label>
+        <input class="inputCad" type="text" id="telefoneCliente" th:field="*{telefoneCliente}"><br><br>
 
-        <label for="enderecoCliente">Endereço:</label>
-        <input type="text" id="enderecoCliente" th:field="*{enderecoCliente}"><br><br>
+        <label class="labelCad" for="enderecoCliente">Endereço:</label>
+        <input class="inputCad" type="text" id="enderecoCliente" th:field="*{enderecoCliente}"><br><br>
 
-        <label for="cpfCliente">Cpf:</label>
-        <input type="text" id="cpfCliente" th:field="*{cpfCliente}"><br><br>
+        <label class="labelCad" for="cpfCliente">Cpf:</label>
+        <input class="inputCad" type="text" id="cpfCliente" th:field="*{cpfCliente}"><br><br>
 
-        <button type="submit">Salvar</button>
+        <button class="btnSalvar" s type="submit">Salvar</button>
 
     </form>
     <br><br>
 
-    <button><a href="/petweb">Voltar</a></button>
+    <button class="btnVoltar" ><a class="linkVoltar" href="/home">Voltar</a></button>
     
 </body>
 </html>
