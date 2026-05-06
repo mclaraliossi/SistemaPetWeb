@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.petweb.petweb.entity.Animal;
+import br.com.petweb.petweb.entity.Cliente;
 import br.com.petweb.petweb.service.AnimalService;
+import br.com.petweb.petweb.service.ClienteService;
 
 
 @Controller
@@ -22,6 +24,9 @@ public class AnimalController {
         //Injeção de dependência da service de clientes 
         @Autowired
         private AnimalService animalService;
+
+        @Autowired
+        private ClienteService clienteService;
     
         //Método para salvar cliente
         @PostMapping("/salvar")
@@ -42,6 +47,8 @@ public class AnimalController {
         @GetMapping("/criar")
         public String criar(Model model){
             model.addAttribute("animal", new Animal());
+            List<Cliente> clientes = clienteService.findAll();
+            model.addAttribute("clientes", clientes);
             return "animal/formularioAnimal";
         }
         // Método para excluir cliente
@@ -56,6 +63,8 @@ public class AnimalController {
         public String editar(@PathVariable Integer id, Model model) {
             Animal animal = animalService.findById(id);
             model.addAttribute("animal", animal);
+            List<Cliente> clientes = clienteService.findAll();
+            model.addAttribute("clientes", clientes);
             return "animal/formularioAnimal";
         }
     

@@ -1,10 +1,14 @@
 package br.com.petweb.petweb.entity;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Animal {
     @Id
-     @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idAnimal;
 
     @Column(nullable = false, length = 40)
@@ -31,6 +35,10 @@ public class Animal {
 
     @Column(nullable = false, length = 50)
     private String pesoAnimal;
+
+    @ManyToOne
+    @JoinColumn(name = "idCliente_fk")
+    private Cliente cliente;
 
 
 }
