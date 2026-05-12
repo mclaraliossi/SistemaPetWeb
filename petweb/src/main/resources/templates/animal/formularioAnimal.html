@@ -22,8 +22,8 @@
         <input class="inputCad" type="text" id="racaAnimal" th:field="*{racaAnimal}"><br><br>
 
         <label class="labelCad" for="idCliente">Tutor</label>
-        <select th:field="*{cliente}">
-            <option value="" disable selected>Selecione o tutor</option>
+        <select class="selectCad" th:field="*{cliente}">
+            <option class="optionCad" value="" disable selected>Selecione o tutor</option>
             <option th:each="cliente : ${clientes}"
                     th:text="${cliente.nomeCliente}"
                     th:value="${cliente.idCliente}">
