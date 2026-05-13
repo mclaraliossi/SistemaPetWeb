@@ -1,13 +1,10 @@
 package br.com.petweb.petweb.entity;
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,28 +13,26 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class Animal {
+@AllArgsConstructor
+public class Veterinario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idAnimal;
+    private Integer idVeterinario;
 
     @Column(nullable = false, length = 40)
-    private String nomeAnimal;
+    private String nomeVeterinario;
 
-    @Column(nullable = false, length = 20)
-    private String racaAnimal;
+    @Column(nullable = false, length = 100)
+    private String especialidadeVeterrinario;
 
     @Column(nullable = false, length = 15)
-    private String porteAnimal;
+    private String telefoneCliente;
 
-    @Column(nullable = false, length = 50)
-    private String pesoAnimal;
+    @Column(nullable = false, length = 6)
+    private Integer crmVeterinario;
 
-    @ManyToOne
-    @JoinColumn(name = "idCliente_fk")
-    private Cliente cliente;
-
+    @Column(nullable = false, length = 14)
+    private String cpfVeterinario;
 
 }

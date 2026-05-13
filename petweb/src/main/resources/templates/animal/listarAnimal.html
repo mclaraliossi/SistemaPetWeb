@@ -17,6 +17,7 @@
                 <th>Raça</th>
                 <th>Porte</th>
                 <th>Peso</th>
+                <th>Tutor</th>
                 <th colspan="2">Ações</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                 <td th:text="${animal.racaAnimal}"></td>
                 <td th:text="${animal.porteAnimal}"></td>
                 <td th:text="${animal.pesoAnimal}"></td>
+                <td th:text="${animal.cliente.nomeCliente}"></td>
                 
                 <td>
                     <a class="linkTabelaListar" th:href="@{/animais/editar/{id}(id=${animal.idAnimal})}">Editar</a>
