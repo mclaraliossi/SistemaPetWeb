@@ -24,10 +24,10 @@ public class Veterinario {
     private String nomeVeterinario;
 
     @Column(nullable = false, length = 100)
-    private String especialidadeVeterrinario;
+    private String especialidadeVeterinario;
 
     @Column(nullable = false, length = 15)
-    private String telefoneCliente;
+    private String telefoneVeterinario;
 
     @Column(nullable = false, length = 6)
     private Integer crmVeterinario;

@@ -7,7 +7,7 @@
 </head>
 <body class="bodyListar">
         <h1 class="textPrincipal">Listagem de clientes</h1>
-        <h3 class="textTerciario"><a th:href="@{/veterinarios/criar}">Criar novo cliente</a></h3>
+        <h3 class="textTerciario"><a th:href="@{/consultas/criar}">Criar novo cliente</a></h3>
         <table class="tabelaListar" >
             <thead>
                 <tr>
@@ -27,8 +27,8 @@
                     <td th:text="${veterinario.crmVeterinario}"></td>
                     <td th:text="${veterinario.cpfVeterinario}"></td>
                     <td>
-                        <a class="linkTabelaListar" th:href="@{/veterinarios/editar/{id}(id=${veterinario.idVeterinario})}">Editar</a>
-                        <a class="linkTabelaListar" th:href="@{/veterinarios/excluir/{id}(id=${veterinario.idVeterinario})}">Excluir</a>
+                        <a class="linkTabelaListar" th:href="@{/consultas/editar/{id}(id=${consulta.idConsulta})}">Editar</a>
+                        <a class="linkTabelaListar" th:href="@{/consultas/excluir/{id}(id=${consulta.idConsulta})}">Excluir</a>
                     </td>
     
     
