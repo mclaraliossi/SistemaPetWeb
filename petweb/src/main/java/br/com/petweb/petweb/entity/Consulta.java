@@ -1,6 +1,7 @@
 package br.com.petweb.petweb.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import jakarta.persistence.Column;
@@ -24,10 +25,7 @@ public class Consulta {
     private Integer idConsulta;
 
     @Column(nullable = false, length = 10)
-    private LocalDate dataConsulta;
-
-    @Column(nullable = false, length = 10)
-    private LocalTime horaConsulta;
+    private LocalDateTime dataehoraConsulta;
 
     @Column(nullable = false, length = 100)
     private String observacoesConsulta;

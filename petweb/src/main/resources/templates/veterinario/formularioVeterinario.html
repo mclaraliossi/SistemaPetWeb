@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Veterinário</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bodyFormCad">
+    <h1 class="textPrincipal">Cadastro de Clientes</h1>
+    <form class="formCad" th:action="@{/veterinarios/salvar}" method="post" th:object="${veterinario}">
+
+        <h2 class="tituloForm">Formulário de Veterinário</h2>
+        <input class="inputCad" type="hidden" th:field="*{idVeterinario}">
+
+        <label class="labelCad" for="nomeVeterinario">Nome:</label>
+        <input class="inputCad" type="text" id="nomeVeterinario" th:field="*{nomeVeterinario}"><br><br>
+
+        <label class="labelCad" for="especialidadeVeterinario">Especialidade:</label>
+        <input class="inputCad" type="text" id="especialidadeVeterinario" th:field="*{especialidadeVeterinario}"><br><br>
+
+        <label class="labelCad" for="telefoneVeterinario">Telefone:</label>
+        <input class="inputCad" type="text" id="telefoneVeterinario" th:field="*{telefoneVeterinario}"><br><br>
+
+        <label class="labelCad" for="crmVeterinario">CRM:</label>
+        <input class="inputCad" type="text" id="crmVeterinario" th:field="*{crmVeterinario}"><br><br>
+
+        <label class="labelCad" for="cpfVeterinario">CPF:</label>
+        <input class="inputCad" type="text" id="cpfVeterinario" th:field="*{cpfVeterinario}"><br><br>
+
+        <button class="btnSalvar" type="submit">Salvar</button>
+
+    </form>
+    <br><br>
+
+    <button class="btnVoltar" ><a class="linkVoltar" href="/home">Voltar</a></button>
+    
+</body>
+</html>
+

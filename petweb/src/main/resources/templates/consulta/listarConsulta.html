@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Listagem de Consultas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body class="bodyListar">
-        <h1 class="textPrincipal">Listagem de clientes</h1>
-        <h3 class="textTerciario"><a th:href="@{/consultas/criar}">Criar novo cliente</a></h3>
+        <h1 class="textPrincipal">Listagem de consultas</h1>
+        <h3 class="textTerciario"><a th:href="@{/consultas/criar}">Criar nova Consulta</a></h3>
         <table class="tabelaListar" >
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Especialidade</th>
-                    <th>Telefone</th>
-                    <th>CRM</th>
-                    <th>CPF</th>
+                    <th>Data e Hora</th>
+                    <th>Observações</th>
+                    <th>Valor</th>
+                    <th>Diagnóstico</th>
+                    <th>Tratamento</th>
                     <th colspan="2">Ações</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="veterinario : ${veterinarios}">
-                    <td th:text="${veterinario.nomeVeterinario}"></td>
-                    <td th:text="${veterinario.especialidadeVeterinario}"></td>
-                    <td th:text="${veterinario.telefoneVeterinario}"></td>
-                    <td th:text="${veterinario.crmVeterinario}"></td>
-                    <td th:text="${veterinario.cpfVeterinario}"></td>
+                <tr th:each="consulta : ${consultas}">
+                    <td th:text="${consulta.dataehoraConsulta}"></td>
+                    <td th:text="${consulta.observacoesConsulta}"></td>
+                    <td th:text="${consulta.valorConsulta}"></td>
+                    <td th:text="${consulta.diagnosticoConsulta}"></td>
+                    <td th:text="${consulta.tratamentoConsulta}"></td>
                     <td>
                         <a class="linkTabelaListar" th:href="@{/consultas/editar/{id}(id=${consulta.idConsulta})}">Editar</a>
                         <a class="linkTabelaListar" th:href="@{/consultas/excluir/{id}(id=${consulta.idConsulta})}">Excluir</a>
@@ -39,3 +41,24 @@
         <button class="btnVoltar" ><a class="linkVoltar" href="/home">Voltar</a></button>
 </body>
 </html>
+
+<!-- @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idConsulta;
+
+    @Column(nullable = false, length = 10)
+    private LocalDate dataConsulta;
+
+    @Column(nullable = false, length = 10)
+    private LocalTime horaConsulta;
+
+    @Column(nullable = false, length = 100)
+    private String observacoesConsulta;
+
+    @Column(nullable = false, length = 9)
+    private Double valorConsulta;
+
+    @Column(nullable = false, length = 50)
+    private String diagnosticoConsulta;
+
+    @Column(nullable = false, length = 50)
+    private String tratamentoConsulta; -->

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Consulta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bodyFormCad">
+    <h1 class="textPrincipal">Cadastro de Consultas</h1>
+    <form class="formCad" th:action="@{/consultas/salvar}" method="post" th:object="${consulta}">
+
+        <h2 class="tituloForm">Formulário de Consulta</h2>
+        <input class="inputCad" type="hidden" th:field="*{idConsulta}">
+
+        <label class="labelCad" for="dataehoraConsulta">Data e hora:</label>
+        <input class="inputCad" type="datetime-local" id="dataehoraConsulta" th:field="*{dataehoraConsulta}"><br><br>
+
+        <label class="labelCad" for="observacoesConsulta">Observações:</label>
+        <input class="inputCad" type="text" id="observacoesConsulta" th:field="*{observacoesConsulta}"><br><br>
+
+        <label class="labelCad" for="valorConsulta">Valor:</label>
+        <input class="inputCad" type="text" id="valorConsulta" th:field="*{valorConsulta}"><br><br>
+
+        <label class="labelCad" for="diagnosticoConsulta">Diagnóstico:</label>
+        <input class="inputCad" type="text" id="diagnosticoConsulta" th:field="*{diagnosticoConsulta}"><br><br>
+        
+        <label class="labelCad" for="tratamentoConsulta">Tratamento:</label>
+        <input class="inputCad" type="text" id="tratamentoConsulta" th:field="*{tratamentoConsulta}"><br><br>
+
+        <button class="btnSalvar" type="submit">Salvar</button>
+
+    </form>
+    <br><br>
+
+    <button class="btnVoltar" ><a class="linkVoltar" href="/home">Voltar</a></button>
+    
+</body>
+</html>
+<!-- 
+<td th:text="${consulta.dataConsulta}"></td>
+<td th:text="${veterinario.horaConsulta}"></td>
+<td th:text="${veterinario.observacoesConsulta}"></td>
+<td th:text="${veterinario.valorConsulta}"></td>
+<td th:text="${veterinario.diagnosticoConsulta}"></td>
+<td th:text="${veterinario.tratamentoConsulta}"></td> -->
+
