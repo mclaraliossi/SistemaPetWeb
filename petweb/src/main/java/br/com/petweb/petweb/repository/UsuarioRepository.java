@@ -9,4 +9,6 @@ import br.com.petweb.petweb.entity.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     
     Optional<Usuario> findByLoginUsuario(String loginUsuario);
+
+    Optional<Usuario> findByEmailUsuario(String emailUsuario);
 }

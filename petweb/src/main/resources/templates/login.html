@@ -16,6 +16,11 @@
             <label class="labelLogin" for="password">Senha</label>
             <input class="inputLogin" type="password" id="password" name="password" />
             <br />
+
+            <p class="msgLogin">
+                <a href="/usuarios/recuperar-senha" style="color: #007bff; text-decoration: none;">Esqueceu sua senha?</a>
+            </p>
+           
             <button class="btnEntrar" type="submit">Entrar</button>
         </form>
         <p class="msgLogin" th:if="${param.error}">Login inválido</p>
