@@ -30,7 +30,7 @@ public class UsuarioController {
         model.addAttribute("usuarios", new Usuario());
         return "/usuario/usuarioFormulario";
     }
-    // Recuperaação de senha
+    // Recuperação de senha
     @GetMapping("/recuperar-senha")
     public String recuperarSenhaForm() {
         return "/usuario/recuperarSenha";

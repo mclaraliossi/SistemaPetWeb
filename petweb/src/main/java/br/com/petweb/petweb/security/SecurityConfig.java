@@ -19,7 +19,8 @@ public class SecurityConfig {
                         .requestMatchers(
                         "/login", 
                         "/petweb", 
-                        "/css/**", 
+                        "/css/**",
+                        "/js/**", 
                         "/images/**", 
                         "/usuarios/**")
                         .permitAll()
