@@ -17,6 +17,24 @@
         <label class="labelCad" for="dataehoraConsulta">Data e hora:</label>
         <input class="inputCad" type="datetime-local" id="dataehoraConsulta" th:field="*{dataehoraConsulta}"><br><br>
 
+        <label class="labelCad" for="idVeterinario">Veterinário</label>
+        <select class="selectCad" th:field="*{veterinario}">
+            <option class="optionCad" value="" disable selected>Selecione o Veterinário</option>
+            <option th:each="veterinario : ${veterinarios}"
+                    th:text="${veterinario.nomeVeterinario}"
+                    th:value="${veterinario.idVeterinario}">
+            </option>
+        </select><br><br>
+
+        <label class="labelCad" for="idAnimal">Animal</label>
+        <select class="selectCad" th:field="*{animal}">
+            <option class="optionCad" value="" disable selected>Selecione o Animal</option>
+            <option th:each="animal : ${animais}"
+                    th:text="${animal.nomeAnimal}"
+                    th:value="${animal.idAnimal}">
+            </option>
+        </select><br><br>
+
         <label class="labelCad" for="observacoesConsulta">Observações:</label>
         <input class="inputCad" type="text" id="observacoesConsulta" th:field="*{observacoesConsulta}"><br><br>
 

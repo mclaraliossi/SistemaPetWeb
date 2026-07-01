@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.petweb.petweb.entity.Animal;
 import br.com.petweb.petweb.entity.Consulta;
+import br.com.petweb.petweb.entity.Veterinario;
+import br.com.petweb.petweb.service.AnimalService;
 import br.com.petweb.petweb.service.ConsultaService;
+import br.com.petweb.petweb.service.VeterinarioService;
 
 
 
@@ -23,6 +27,10 @@ public class ConsultaController {
      //Injeção de dependência da service de clientes 
     @Autowired
     private ConsultaService consultaService;
+    @Autowired
+    private VeterinarioService veterinarioService;
+    @Autowired
+    private AnimalService animalService;
 
     //Método para salvar cliente
     @PostMapping("/salvar")
@@ -43,6 +51,10 @@ public class ConsultaController {
     @GetMapping("/criar")
     public String criar(Model model){
         model.addAttribute("consulta", new Consulta());
+        List<Veterinario> veterinarios = veterinarioService.findAll();
+        model.addAttribute("veterinarios", veterinarios);
+        List<Animal> animais = animalService.findAll();
+        model.addAttribute("animais", animais);
         return "consulta/formularioConsulta";
     }
     // Método para excluir cliente

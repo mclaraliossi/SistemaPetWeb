@@ -24,6 +24,8 @@
             <tbody>
                 <tr th:each="consulta : ${consultas}">
                     <td th:text="${consulta.dataehoraConsulta}"></td>
+                    <td th:text="${consulta.animal.nomeAnimal}"></td>
+                    <td th:text="${consulta.veterinario.nomeVeterinario}"></td>
                     <td th:text="${consulta.observacoesConsulta}"></td>
                     <td th:text="${consulta.valorConsulta}"></td>
                     <td th:text="${consulta.diagnosticoConsulta}"></td>

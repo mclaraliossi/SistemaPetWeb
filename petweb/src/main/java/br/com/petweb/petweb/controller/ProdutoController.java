@@ -64,7 +64,7 @@ public class ProdutoController {
 
      //Método para excluir
      @GetMapping("/excluir/{id}")
-     public String excluir(PathVariable Integer id){
+     public String excluir(@PathVariable Integer id, @ModelAttribute Produto produto){
         produtoService.deleteById(id);
         return "redirect:/produtos/listar";
      }

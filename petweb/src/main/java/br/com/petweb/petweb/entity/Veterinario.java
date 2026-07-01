@@ -1,10 +1,13 @@
 package br.com.petweb.petweb.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,5 +37,8 @@ public class Veterinario {
 
     @Column(nullable = false, length = 14)
     private String cpfVeterinario;
+
+    @OneToMany(mappedBy = "veterinario")
+    private List<Consulta> consulta;
 
 }
