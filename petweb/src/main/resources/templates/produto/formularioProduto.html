@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Produtos</title>
+</head>
+<body class="bodyFormCad">
+    <h1 class="textPrincipal" >Formulario de Produtos</h1>
+    <form class="formCad" th:action="@{/produtos/salvar}" method="post" th:object="${produto}">
+
+        <input class="inputCad" type="hidden" name="idProduto" th:field="*{idProduto}" />
+
+        <label class="labelCad" for="descricaoProduto">Descrição</label>
+        <input class="inputCad" type="text" id="descricaoProduto" name="descricaoProduto" th:field="*{descricaoProduto}" />
+
+        <label class="labelCad" for="marcaProduto">Marca</label>
+        <input class="inputCad" type="text" id="marcaProduto" name="marcaProduto" th:field="{marcaProduto}" />
+
+        <label class="labelCad" for="unidadeProduto">Unidade</label>
+        <input class="inputCad" type="text" id="unidadeProduto" name="unidadeProduto" th:field="*{unidadeProduto}" />
+
+        <label class="labelCad" for="valorProduto">Valor</label>
+        <input class="inputCad" type="text" id="valorProduto" name="valorProduto" th:field="*{valorProduto}" />
+    
+        <input class="inputCad" type="submit" value="salvar"/>
+
+        <a th:href="@{/produtos/listar}">Voltar</a>
+    </form>
+</body>
+</html>

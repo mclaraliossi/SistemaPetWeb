@@ -50,7 +50,7 @@ public class ProdutoController {
     public String editarForm(@PathVariable Integer id, Model model){
         Produto produto = produtoService.findById(id);
         model.addAttribute("produto", produto);
-        return "produto/formulárioProduto";
+        return "produto/formularioProduto";
 
        
     }

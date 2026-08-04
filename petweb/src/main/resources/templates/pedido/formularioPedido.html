@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Pedidos</title>
+</head>
+<body class="bodyFormCad">
+    <h1  class="textPrincipal">Formulário de Pedidos</h1>
+    <h2 class="tituloForm">Clientes</h2>
+    <datalist class="selectCad" id="listarCliente">
+        <option class="optionCad" th:each="cliente : ${clientes}" 
+                th:value="${cliente.idCliente} + ' - ' + cliente.nomeCliente">
+        </option>
+    </datalist>
+    <h2 class="tituloForm">Produtos</h2>
+    <datalist class="selectCad" id="listarProduto">
+        <option class="optionCad" th:each="produto : ${produtos}"
+                th:value="${produto.idProduto + ' - ' + produto.descricaoProduto}"
+                th:attr="data-preco=${produto.valorProduto}">
+        </option>
+    </datalist>
+    <p>I. Identificação do cliente</p>
+    <label for="cliente">Cliente</label>
+    <input
+        list="listarCliente"
+        id="cliente"
+        type="text"
+        placeholder="Digite o nome ou código do cliente">
+    <p>II.  Adicionar produto ao Pedido</p>
+    <label for="produto">Produto</label>
+    <input
+        list="listarProduto"
+        id="produto"
+        type="text"
+        placeholder="Digite o produto"
+
+</body>
+</html>
