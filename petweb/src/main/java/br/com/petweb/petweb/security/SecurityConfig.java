@@ -15,6 +15,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth //fala quais são as páginas ou rotas que podem ser acessadas sem estar logada na página
                         .requestMatchers(
                         "/login", 

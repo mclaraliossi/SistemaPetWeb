@@ -6,6 +6,7 @@
     <title>Cadastrar Pedidos</title>
 </head>
 <body class="bodyFormCad">
+
     <h1  class="textPrincipal">Formulário de Pedidos</h1>
     <h2 class="tituloForm">Clientes</h2>
     <datalist class="selectCad" id="listarCliente">
@@ -33,7 +34,35 @@
         list="listarProduto"
         id="produto"
         type="text"
-        placeholder="Digite o produto"
+        placeholder="Digite o produto">
+    
+    <label for="quantidade">Quantidade</label>
+    <input type="number" id="quantidade" placeholder="0" min="1">
+    <button type="button" onclick="adicionarItem()">
+    </button> 
+
+    <table>
+        <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Preço unitário</th>
+            <th>Subtotal</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody id="tabela-itens">
+            <tr id="empty-row">
+                <td colspan="5">Nenhum produto adicionado ao pedido</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <span>Total do pedido</span>
+    <span>R$ <span id="totalPedido">0,00</span> </span>
+    <br>
+    <button onclick="salvarPedido()">Confirmar e Salvar Pedido</button>
 
 </body>
 </html>

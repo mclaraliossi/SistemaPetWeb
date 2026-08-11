@@ -30,43 +30,4 @@ public class UsuarioController {
         model.addAttribute("usuarios", new Usuario());
         return "/usuario/usuarioFormulario";
     }
-    // Recuperação de senha
-    @GetMapping("/recuperar-senha")
-    public String recuperarSenhaForm() {
-        return "/usuario/recuperarSenha";
-    }
-
-    @PostMapping("/solicitar-recuperacao")
-    public String solicitarRecuperacao(@RequestParam String email, Model model) {
-        try {
-            usuarioService.solicitarRecuperacaoSenha(email);
-            model.addAttribute("mensagem", "Email de recuperação enviado com sucesso!");
-            return "/usuario/recuperarSenha";
-        } catch (Exception e) {
-            model.addAttribute("erro", e.getMessage());
-            return "/usuario/recuperarSenha";
-        }
-    }
-
-    @GetMapping("/redefinir-senha")
-    public String redefinirSenhaForm(@RequestParam String token, Model model) {
-        model.addAttribute("token", token);
-        return "/usuario/redefinirSenha";
-    }
-
-    @PostMapping("/redefinir-senha")
-    public String redefinirSenha(@RequestParam String token, @RequestParam String novaSenha, Model model) {
-        try {
-            usuarioService.redefinirSenha(token, novaSenha);
-            model.addAttribute("mensagem", "Senha redefinida com sucesso!");
-            return "redirect:/login";
-        } catch (Exception e) {
-            model.addAttribute("erro", e.getMessage());
-            return "/usuario/redefinirSenha?token=" + token;
-        }
-    }
-
-
-
- 
 }
