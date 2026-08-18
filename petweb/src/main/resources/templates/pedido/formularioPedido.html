@@ -1,68 +1,310 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastrar Pedidos</title>
 </head>
+
 <body class="bodyFormCad">
 
-    <h1  class="textPrincipal">Formulário de Pedidos</h1>
+    <h1 class="textPrincipal">Formulário de Pedidos</h1>
+
     <h2 class="tituloForm">Clientes</h2>
+
     <datalist class="selectCad" id="listarCliente">
-        <option class="optionCad" th:each="cliente : ${clientes}" 
-                th:value="${cliente.idCliente} + ' - ' + cliente.nomeCliente">
+        <option class="optionCad"
+                th:each="cliente : ${clientes}"
+                th:value="${cliente.idCliente} + ' - ' + ${cliente.nomeCliente}">
         </option>
     </datalist>
+
     <h2 class="tituloForm">Produtos</h2>
+
     <datalist class="selectCad" id="listarProduto">
-        <option class="optionCad" th:each="produto : ${produtos}"
-                th:value="${produto.idProduto + ' - ' + produto.descricaoProduto}"
+        <option class="optionCad"
+                th:each="produto : ${produtos}"
+                th:value="${produto.idProduto} + ' - ' + ${produto.descricaoProduto}"
                 th:attr="data-preco=${produto.valorProduto}">
         </option>
     </datalist>
+
     <p>I. Identificação do cliente</p>
+
     <label for="cliente">Cliente</label>
     <input
         list="listarCliente"
         id="cliente"
         type="text"
         placeholder="Digite o nome ou código do cliente">
-    <p>II.  Adicionar produto ao Pedido</p>
+
+    <p>II. Adicionar produto ao Pedido</p>
+
     <label for="produto">Produto</label>
     <input
         list="listarProduto"
         id="produto"
         type="text"
         placeholder="Digite o produto">
-    
+
     <label for="quantidade">Quantidade</label>
-    <input type="number" id="quantidade" placeholder="0" min="1">
+    <input
+        type="number"
+        id="quantidade"
+        placeholder="0"
+        min="1"
+        value="1">
+
     <button type="button" onclick="adicionarItem()">
-    </button> 
+        Adicionar
+    </button>
+
+    <br><br>
 
     <table>
         <thead>
-        <tr>
-            <th>Produto</th>
-            <th>Quantidade</th>
-            <th>Preço unitário</th>
-            <th>Subtotal</th>
-            <th>Ação</th>
-        </tr>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Preço unitário</th>
+                <th>Subtotal</th>
+                <th>Ação</th>
+            </tr>
         </thead>
+
         <tbody id="tabela-itens">
+
             <tr id="empty-row">
-                <td colspan="5">Nenhum produto adicionado ao pedido</td>
+                <td colspan="5">
+                    Nenhum produto adicionado ao pedido
+                </td>
             </tr>
 
         </tbody>
     </table>
 
-    <span>Total do pedido</span>
-    <span>R$ <span id="totalPedido">0,00</span> </span>
     <br>
-    <button onclick="salvarPedido()">Confirmar e Salvar Pedido</button>
+
+    <span>Total do pedido</span>
+
+    <span>
+        R$ <span id="totalPedido">0,00</span>
+    </span>
+
+    <br><br>
+
+    <button type="button" onclick="salvarPedido()">
+        Confirmar e Salvar Pedido
+    </button>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        function adicionarItem() {
+
+            // Pega os campos
+            const produtoInput = document.getElementById("produto");
+            const quantidadeInput = document.getElementById("quantidade");
+
+            const produtoSelecionado = produtoInput.value;
+            const quantidade = parseInt(quantidadeInput.value);
+
+            // Validação
+            if (produtoSelecionado === "") {
+                alert("Selecione um produto.");
+                return;
+            }
+
+            if (isNaN(quantidade) || quantidade < 1) {
+                alert("Informe uma quantidade válida.");
+                return;
+            }
+
+            // Procura o produto selecionado no datalist
+            const opcoes = document.querySelectorAll("#listarProduto option");
+
+            let preco = null;
+
+            opcoes.forEach(function(opcao) {
+
+                if (opcao.value === produtoSelecionado) {
+                    preco = parseFloat(opcao.getAttribute("data-preco"));
+                }
+
+            });
+
+            // Se não encontrou o produto
+            if (preco === null || isNaN(preco)) {
+                alert("Produto não encontrado.");
+                return;
+            }
+
+            // Calcula o subtotal
+            const subtotal = preco * quantidade;
+
+            // Remove a mensagem "Nenhum produto..."
+            const emptyRow = document.getElementById("empty-row");
+
+            if (emptyRow) {
+                emptyRow.remove();
+            }
+
+            // Cria uma nova linha
+            const tabela = document.getElementById("tabela-itens");
+
+            const linha = document.createElement("tr");
+
+            linha.innerHTML = `
+                <td>${produtoSelecionado}</td>
+
+                <td>
+                    <input
+                        type="number"
+                        value="${quantidade}"
+                        min="1"
+                        class="quantidade-item"
+                        onchange="alterarQuantidade(this)">
+                </td>
+
+                <td>
+                    R$ ${formatarMoeda(preco)}
+                </td>
+
+                <td class="subtotal">
+                    R$ ${formatarMoeda(subtotal)}
+                </td>
+
+                <td>
+                    <button type="button" onclick="removerItem(this)">
+                        Remover
+                    </button>
+                </td>
+            `;
+
+            // Guarda o preço no elemento da linha
+            linha.setAttribute("data-preco", preco);
+
+            tabela.appendChild(linha);
+
+            // Atualiza o total
+            atualizarTotal();
+
+            // Limpa os campos
+            produtoInput.value = "";
+            quantidadeInput.value = 1;
+        }
+
+
+        // Altera a quantidade de um produto já adicionado
+        function alterarQuantidade(input) {
+
+            const linha = input.closest("tr");
+
+            const preco = parseFloat(
+                linha.getAttribute("data-preco")
+            );
+
+            const quantidade = parseInt(input.value);
+
+            if (isNaN(quantidade) || quantidade < 1) {
+                input.value = 1;
+                return;
+            }
+
+            // Calcula novamente o subtotal
+            const subtotal = preco * quantidade;
+
+            // Atualiza o subtotal da linha
+            const campoSubtotal = linha.querySelector(".subtotal");
+
+            campoSubtotal.textContent =
+                "R$ " + formatarMoeda(subtotal);
+
+            // Atualiza o total do pedido
+            atualizarTotal();
+        }
+
+
+        // Atualiza o total do pedido
+        function atualizarTotal() {
+
+            const linhas = document.querySelectorAll(
+                "#tabela-itens tr"
+            );
+
+            let total = 0;
+
+            linhas.forEach(function(linha) {
+
+                const preco = parseFloat(
+                    linha.getAttribute("data-preco")
+                );
+
+                const quantidadeInput =
+                    linha.querySelector(".quantidade-item");
+
+                if (!isNaN(preco) && quantidadeInput) {
+
+                    const quantidade =
+                        parseInt(quantidadeInput.value);
+
+                    total += preco * quantidade;
+                }
+
+            });
+
+            document.getElementById("totalPedido").textContent =
+                formatarMoeda(total);
+        }
+
+
+        // Remove um produto da tabela
+        function removerItem(botao) {
+
+            const linha = botao.closest("tr");
+
+            linha.remove();
+
+            atualizarTotal();
+
+            // Se não tiver mais produtos,
+            // mostra novamente a mensagem
+            const tabela =
+                document.getElementById("tabela-itens");
+
+            if (tabela.children.length === 0) {
+
+                tabela.innerHTML = `
+                    <tr id="empty-row">
+                        <td colspan="5">
+                            Nenhum produto adicionado ao pedido
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+
+        // Formata o número para moeda brasileira
+        function formatarMoeda(valor) {
+
+            return valor.toLocaleString("pt-BR", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+        }
+
+
+        // Ainda vamos implementar essa função
+        function salvarPedido() {
+
+            alert("Função de salvar pedido ainda será implementada.");
+
+        }
+
+    </script>
 
 </body>
 </html>
