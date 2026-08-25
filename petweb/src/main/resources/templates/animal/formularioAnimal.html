@@ -9,7 +9,7 @@
 </head>
 <body class="bodyFormCad">
     <h1 class="textPrincipal">Cadastro de Animais</h1>
-    <form class="formCad" th:action="@{/animais/salvar}" method="post" th:object="${animal}">
+    <form class="formCad" th:action="@{/animais/salvar}" method="post" th:object="${animal}" enctype="multipart/form-data">
 
         <h2 class="tituloForm">Formulário de Animal</h2>
 
@@ -36,6 +36,13 @@
 
         <label class="labelCad" for="pesoAnimal">Peso:</label>
         <input class="inputCad" type="text" id="pesoAnimal" th:field="*{pesoAnimal}"><br><br>
+
+        <label class="labelCad" for="fotoAnimal">Foto:</label>
+        <input class="inputCad" type="file" id="fotoAnimal" name="foto" accept="img/*">
+        Tamanho máximo: 2Mb
+        <br><br>
+
+    
 
         <button class="btnSalvar" type="submit">Salvar</button>
 
