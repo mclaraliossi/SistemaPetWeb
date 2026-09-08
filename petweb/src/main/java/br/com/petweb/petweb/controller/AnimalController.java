@@ -98,6 +98,14 @@ public class AnimalController {
                     .contentType(MediaType.parseMediaType(animal.getTipoFotoAnimal()))
                     .body(animal.getFotoAnimal());
         }
+
+        //Método para listar Clientes e Animais via DTO
+    @GetMapping("/consulta")
+    public String consulta(Model model){
+        List<ClienteAnimalDTO> resultados = animalService.buscarClienteAnimal();
+        model.addAttribute("resultados", resultados);
+        return "animal/consultaClientesAnimais";
+    }
     
    
 }
