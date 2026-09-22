@@ -39,7 +39,9 @@ public class Usuario {
     @Column(nullable = false, length = 150)
     private String senhaUsuario;
 
+    @Column(nullable = false, length = 20)
     private String role = "ROLE_USER";
+
 
 
 

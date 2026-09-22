@@ -15,26 +15,41 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth //fala quais são as páginas ou rotas que podem ser acessadas sem estar logada na página
-                        .requestMatchers(
-                        "/login", 
-                        "/petweb", 
-                        "/css/**",
-                        "/js/**", 
-                        "/images/**", 
-                        "/usuarios/**")
-                        .permitAll()
-                        .anyRequest().authenticated())
-                .formLogin(form -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/home", true)
-                        .permitAll())
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/login?logout")
-                        .permitAll());
+                .csrf(csrf -> csrf.disable( ))
 
-        return http.build();
+            /* Configura as permissões das páginas.*/
+            .authorizeHttpRequests(auth -> auth
+
+                    // Páginas públicas.
+                    .requestMatchers(
+                        "/login",
+                        "/petweb",
+                        "/css/**",
+                        "/js/**",
+                        "/images/**",
+                        "/usuarios/criar",
+                        "/usuarios/salvar"
+                    )
+                    .permitAll()
+
+                    // Área permitida para USER e ADMIN.
+                    .requestMatchers("/area-usuario/**")
+                    .hasAnyRole("USER", "ADMIN")
+
+                    // Todas as outras páginas ficam exclusivas do ADMIN.
+                    .anyRequest()
+                    .hasRole("ADMIN")
+                )
+            .formLogin(form -> form
+                .loginPage("/login")
+                .defaultSuccessUrl("/area-usuario", true)
+                .permitAll()
+            )
+            .logout(logout -> logout
+                .logoutSuccessUrl("/login?logout")
+                .permitAll()
+            );
+        return http.build( );
     }
 
     @Bean
@@ -49,7 +64,4 @@ public class SecurityConfig {
     }
 
 }
-
-
-
 

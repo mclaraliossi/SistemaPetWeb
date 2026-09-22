@@ -21,6 +21,7 @@ public class UsuarioController {
 
     @PostMapping("/salvar")
     public String salvar(@ModelAttribute Usuario usuario) {
+        usuario.setRole("ROLE_USER");
         usuarioService.save(usuario);
         return "/login";
     };

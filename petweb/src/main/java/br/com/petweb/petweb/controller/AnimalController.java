@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import br.com.petweb.petweb.dto.ClienteAnimalDTO;
 import br.com.petweb.petweb.entity.Animal;
 import br.com.petweb.petweb.entity.Cliente;
 import br.com.petweb.petweb.service.AnimalService;

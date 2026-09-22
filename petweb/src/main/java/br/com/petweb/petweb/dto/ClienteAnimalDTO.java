@@ -8,8 +8,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstrutor
-@NoArgsConstrutor
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClienteAnimalDTO{
 
     private String nomeCliente;

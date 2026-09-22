@@ -17,10 +17,13 @@ import br.com.petweb.petweb.entity.Usuario;
         this.usuario = usuario;
     }
    
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(usuario.getRole()));
-    }
+       @Override
+public Collection<? extends GrantedAuthority> getAuthorities() {
+    return List.of(
+        new SimpleGrantedAuthority(usuario.getRole())
+    );
+}
+
  
     @Override
     public String getPassword() {
@@ -31,6 +34,8 @@ import br.com.petweb.petweb.entity.Usuario;
     public String getUsername() {
         return usuario.getLoginUsuario();
     }
+
+ 
  
     
 }
