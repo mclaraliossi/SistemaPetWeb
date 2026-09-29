@@ -33,7 +33,7 @@ public class SecurityConfig {
                     .permitAll()
 
                     // Área permitida para USER e ADMIN.
-                    .requestMatchers("/area-usuario/**")
+                    .requestMatchers("/areaUsuario/**")
                     .hasAnyRole("USER", "ADMIN")
 
                     // Todas as outras páginas ficam exclusivas do ADMIN.
@@ -42,7 +42,7 @@ public class SecurityConfig {
                 )
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/area-usuario", true)
+                .defaultSuccessUrl("/areaUsuario", true)
                 .permitAll()
             )
             .logout(logout -> logout
