@@ -43,11 +43,12 @@ public class PedidoController {
     public String criarForm(Model model) {
         model.addAttribute("pedido", new Pedido());
 
-        List<Cliente> Clientes = clienteService.findAll();
-        model.addAttribute("Clientes", Clientes);
+        List<Cliente> clientes = clienteService.findAll();
+        model.addAttribute("clientes", clientes);
 
-        List<Produto> Produtos = produtoService.findAll();
-        model.addAttribute("Produtos", Produtos);
+        List<Produto> produtos = produtoService.findAll();
+        model.addAttribute("produtos", produtos);
+
 
         return "pedido/formularioPedido";
     }
