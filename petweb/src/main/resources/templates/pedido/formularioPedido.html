@@ -300,8 +300,39 @@
         // Ainda vamos implementar essa função
         function salvarPedido() {
 
-            alert("Função de salvar pedido ainda será implementada.");
-
+            let clienteInput = document.getElementById("cliente").value;
+    
+            if (!clienteInput) {
+                alert("Selecione um cliente antes de salvar!");
+                return;
+            }
+    
+            if (itens.length === 0) {
+                alert("Adicione ao menos um produto ao pedido!");
+                return;
+            }
+    
+            let clienteId = clienteInput.split(" - ")[0];
+    
+            let pedido = {
+                cliente: { idCliente: clienteId },
+                itens: itens
+            };
+    
+            fetch("/pedidos", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(pedido)
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert("Pedido salvo com sucesso!");
+                location.reload();
+            })
+            .catch(err => {
+                alert("Erro ao salvar o pedido. Tente novamente.");
+                console.error(err);
+            });
         }
 
     </script>

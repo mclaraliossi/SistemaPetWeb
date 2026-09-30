@@ -12,6 +12,12 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
+    private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
+    SecurityConfig(CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler) {
+        this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
+    }
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -34,15 +40,15 @@ public class SecurityConfig {
 
                     // Área permitida para USER e ADMIN.
                     .requestMatchers("/usuario/**")
-                    .hasAnyRole("USER", "ADMIN")
+                    .hasAnyRole("ROLE_USER", "ROLE_ADMIN")
 
                     // Todas as outras páginas ficam exclusivas do ADMIN.
                     .anyRequest()
-                    .hasRole("ADMIN")
+                    .hasRole("ROLE_ADMIN")
                 )
             .formLogin(form -> form
                 .loginPage("/login")
-                .defaultSuccessUrl("/usuario/", true)
+                .successHandler(customAuthenticationSuccessHandler)
                 .permitAll()
             )
             .logout(logout -> logout
